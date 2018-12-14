@@ -75,7 +75,20 @@ class ConsoleColors:
 
     @classmethod
     def format_status(cls, message, status, prefix='', suffix=''):
+        """
+        Description:
+            Format message by the status. Status is a bool so, TRUE or FALSE.
 
+        Args:
+            message (str): the message as string
+            status (bool): if the message is a success or a fail
+            prefix (str): a string before the message, which is not formatted
+            suffix (str): a string before the message, which is not formatted
+
+        Return:
+            str
+
+        """
         valid_color = cls.GREEN if status else cls.RED
         attrs = ['underline']
 
@@ -119,3 +132,6 @@ if __name__ == '__main__':
     print(ConsoleColors.format("HEADER", ConsoleColors.HEADER))
     print(ConsoleColors.format("INPUT", ConsoleColors.INPUT))
     print(ConsoleColors.format("OUTPUT", ConsoleColors.OUTPUT))
+
+    print('custom styles:')
+    print(ConsoleColors.format("CYAN, underlined", color_type={'color': ConsoleColors.CYAN, 'attrs': 'underline'}))
