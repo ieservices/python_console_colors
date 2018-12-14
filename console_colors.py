@@ -52,9 +52,11 @@ class ConsoleColors:
     # reset color
     _RESET = '\033[0m'
 
+    _active = True
+
     @classmethod
     def format(cls, message, color_type, bg_color=None, attrs=None, prefix='', suffix=''):
-        if not color_type:
+        if not cls._active or not color_type:
             return message
 
         if isinstance(color_type, dict):
@@ -93,6 +95,10 @@ class ConsoleColors:
         attrs = ['underline']
 
         return cls.format(message, valid_color, attrs=attrs, prefix=prefix, suffix=suffix)
+
+    @classmethod
+    def set_active(cls, active):
+        cls._active = bool(active)
 
 
 if __name__ == '__main__':
